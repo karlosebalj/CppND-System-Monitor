@@ -169,15 +169,66 @@ string LinuxParser::Command(int pid[[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Ram(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Ram(int pid) { 
+  int ram = 0;
+  std::string line, key, value;
+  std::string vmSize;
+  std::ifstream inputStream(kProcDirectory + to_string(pid) + kStatusFilename);
+  if (inputStream.is_open()) {
+    while (std::getline(inputStream, line)) {
+      std::replace(line.begin(), line.end(), ':', ' ');
+      std::istringstream linestream(line);
+      while(linestream >> key >> value) {
+        if (key =="VmSize") {
+          ram = std::stof (value) / 1000;
+        }
+      }
+    }
+  }  
+  return std::to_string(ram);
+}
 
-// TODO: Read and return the user ID associated with a process
+// DONE: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Uid(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Uid(int pid) { 
+  std::string key, value;
+  std::string line;
+  std::string uid = "";
+  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatusFilename);
+  if (stream.is_open()) {
+    while (std::getline(stream, line)) {
+      std::replace(line.begin(), line.end(), ':', ' ');
+      std::istringstream linestream(line);
+      while(linestream >> key >> value) {
+        if (key =="Uid") {
+          uid = value;
+          return uid;
+        }
+      }
+    }  
+  }
+  return uid;
+}
 
-// TODO: Read and return the user associated with a process
+// DONE: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::User(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::User(int pid) { 
+  std::string key, value;
+  std::string line;
+  std::ifstream inputStream(std::to_string(pid) + kPasswordPath);
+  if (inputStream.is_open()) {
+    while (std::getline(inputStream, line)) {
+      std::istringstream linestream(line);
+      while(linestream >> key >> value) {
+        if (key =="schelby5") {
+          return key;
+        }
+          
+      }
+    }  
+  }
+  return key; 
+}
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
