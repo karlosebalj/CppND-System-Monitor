@@ -1,6 +1,6 @@
 #include "processor.h"
 
-// TODO: Return the aggregate CPU utilization
+// DONE: Return the aggregate CPU utilization
 float Processor::Utilization() { 
     float userTime, niceTime, systemTime, idleTime, iowaitTime, irqTime, softirqTime, stealTime, guestTime, guest_niceTime;
     float idlealltime, virtalltime, systemalltime, totaltime;
