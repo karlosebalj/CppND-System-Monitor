@@ -164,8 +164,7 @@ int LinuxParser::RunningProcesses() {
   return procsRunning;
  }
 
-// TODO: Read and return the command associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
+// DONE: Read and return the command associated with a process
 string LinuxParser::Command(int pid) { 
   std::string line;
   std::string command;
@@ -180,7 +179,7 @@ string LinuxParser::Command(int pid) {
   return command;  
   }
 
-// DONB: Read and return the memory used by a process
+// DONE: Read and return the memory used by a process
 string LinuxParser::Ram(int pid) { 
   int ram = 0;
   std::string line, key, value;

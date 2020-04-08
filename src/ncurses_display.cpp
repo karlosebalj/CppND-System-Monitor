@@ -58,9 +58,9 @@ void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
   int const pid_column{2};
   int const user_column{10};
   int const cpu_column{28};
-  int const ram_column{28};
-  int const time_column{45};
-  int const command_column{60};
+  int const ram_column{38};
+  int const time_column{55};
+  int const command_column{70};
   wattron(window, COLOR_PAIR(2));
   mvwprintw(window, ++row, pid_column, "PID");
   mvwprintw(window, row, user_column, "USER");
