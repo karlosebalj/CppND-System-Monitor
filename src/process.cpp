@@ -10,7 +10,7 @@ using std::string;
 using std::to_string;
 using std::vector;
 
-// TODO: Return this process's ID
+// DONE: Return this process's ID
 // int Process::Pid() { return _pid; }
 Process::Process(int pid) : _pid(pid) {}
 
@@ -78,9 +78,5 @@ long int Process::UpTime() { return LinuxParser::UpTime(Pid()); }
 
 // DONE: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const& a) const { 
-  if (this->CpuUtilization() > a.CpuUtilization())
-  {
-    return true;
-  }
-  return false;
+  return (this->CpuUtilization() > a.CpuUtilization());
 }

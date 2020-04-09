@@ -4,6 +4,7 @@
 #include "linux_parser.h"
 
 #include <string>
+#include <thread>
 
 /*
 Basic class for Process representation

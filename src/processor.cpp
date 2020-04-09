@@ -37,9 +37,11 @@ float Processor::Utilization() {
                 totaltime = userTime + niceTime + systemalltime + idlealltime + stealTime + virtalltime;
 
                 cpu_percentage = (totaltime - idlealltime)/totaltime;
+                stream.close();
                 return cpu_percentage;
             }
         }
     }
+    stream.close();
     return cpu_percentage;
 }
