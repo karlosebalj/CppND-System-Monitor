@@ -87,10 +87,9 @@ float LinuxParser::MemoryUtilization() {
           memFree = std::stof (value);
         }
       }
-    }  
+    }
   }
   totalUsedMemory = (memTotal - memFree)/memTotal;
-  stream.close();
   return totalUsedMemory;
 }
 
